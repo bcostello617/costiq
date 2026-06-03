@@ -72,11 +72,36 @@ export default function Copilot() {
     setMessages(prev => [...prev, { role: 'user', content: q }]);
     setLoading(true);
 
-    // TODO: Replace with a Supabase Edge Function calling OpenAI/Anthropic — see SETUP.md
-    const responseContent = "⚙️ AI features require an LLM API key. To enable the Copilot, add your OpenAI or Anthropic key to a Supabase Edge Function and call it here. See SETUP.md for details.";
+    try {
+      const context = buildContext();
+      const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
 
-    setMessages(prev => [...prev, { role: 'assistant', content: responseContent }]);
-    setLoading(false);
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01',
+          'content-type': 'application/json',
+          'anthropic-dangerous-direct-browser-access': 'true',
+        },
+        body: JSON.stringify({
+          model: 'claude-haiku-4-5-20251001',
+          max_tokens: 1024,
+          system: 'You are a construction cost analyst with expertise in multifamily and commercial development. Answer questions concisely using the portfolio data provided. Format numbers clearly (e.g., $125,000/unit). Use markdown for structure when helpful.',
+          messages: [
+            { role: 'user', content: `${context}\n\nQuestion: ${q}` }
+          ],
+        }),
+      });
+
+      const data = await response.json();
+      const responseContent = data.content?.[0]?.text ?? 'No response received.';
+      setMessages(prev => [...prev, { role: 'assistant', content: responseContent }]);
+    } catch (err) {
+      setMessages(prev => [...prev, { role: 'assistant', content: `Error: ${err.message}` }]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

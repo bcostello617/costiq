@@ -43,14 +43,42 @@ export default function ProjectInsightsTab({ project, costs, allProjects, allCos
           cost_per_unit: p.total_hard_cost / p.unit_count,
         }));
 
-      // TODO: Replace with a Supabase Edge Function that calls OpenAI/Anthropic
-      // See SETUP.md for instructions
-      return {
-        summary: "⚙️ AI insights require an LLM API key. Configure a Supabase Edge Function to enable this feature.",
-        insights: [],
-        recommendations: [],
-        risk_areas: [],
-      };
+      const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY;
+      const prompt = `You are a construction cost analyst. Analyze this project against portfolio comparables and return a JSON object with exactly these keys:
+- summary: string (2-3 sentence executive summary)
+- insights: array of objects with keys: title (string), description (string), type ("favorable"|"unfavorable"|"neutral"), impact ("high"|"medium"|"low")
+- recommendations: array of strings (actionable recommendations)
+- risk_areas: array of strings (potential risk factors)
+
+PROJECT:
+${JSON.stringify(projectSummary, null, 1)}
+
+COST BREAKDOWN:
+${JSON.stringify(costBreakdown, null, 1)}
+
+COMPARABLES (${comparables.length} projects):
+${JSON.stringify(comparables, null, 1)}
+
+Respond with ONLY valid JSON — no markdown, no code fences.`;
+
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01',
+          'content-type': 'application/json',
+          'anthropic-dangerous-direct-browser-access': 'true',
+        },
+        body: JSON.stringify({
+          model: 'claude-haiku-4-5-20251001',
+          max_tokens: 1024,
+          messages: [{ role: 'user', content: prompt }],
+        }),
+      });
+
+      const data = await response.json();
+      const text = data.content?.[0]?.text ?? '{}';
+      return JSON.parse(text);
     },
     onSuccess: (data) => setInsights(data),
   });
