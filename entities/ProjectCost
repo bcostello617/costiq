@@ -1,0 +1,44 @@
+{
+  "name": "ProjectCost",
+  "type": "object",
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "description": "Reference to the Project"
+    },
+    "category_id": {
+      "type": "string",
+      "description": "Reference to the Cost Category"
+    },
+    "category_name": {
+      "type": "string",
+      "description": "Denormalized category name for quick display"
+    },
+    "total_cost": {
+      "type": "number",
+      "description": "Total cost in dollars"
+    },
+    "cost_per_unit": {
+      "type": "number"
+    },
+    "cost_per_sf": {
+      "type": "number"
+    },
+    "percent_of_total": {
+      "type": "number",
+      "description": "Percentage of total project cost"
+    },
+    "cost_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "project_id",
+    "category_id",
+    "total_cost"
+  ]
+}

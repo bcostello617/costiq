@@ -1,0 +1,121 @@
+{
+  "name": "Project",
+  "type": "object",
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "description": "Name of the project"
+    },
+    "project_number": {
+      "type": "string",
+      "description": "Project identifier number"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "market": {
+      "type": "string",
+      "description": "Market area (e.g. DFW, Austin, Houston)"
+    },
+    "address": {
+      "type": "string"
+    },
+    "product_type": {
+      "type": "string",
+      "enum": [
+        "Garden",
+        "Wrap",
+        "Podium",
+        "Mid-Rise",
+        "High-Rise",
+        "Townhome",
+        "Mixed-Use",
+        "Senior Living",
+        "Student Housing",
+        "Affordable",
+        "Other"
+      ]
+    },
+    "construction_type": {
+      "type": "string",
+      "enum": [
+        "Wood Frame",
+        "Steel Frame",
+        "Concrete",
+        "Hybrid",
+        "Modular",
+        "Tilt-Wall",
+        "Other"
+      ]
+    },
+    "podium_type": {
+      "type": "string",
+      "enum": [
+        "None",
+        "Concrete Podium",
+        "Steel Podium",
+        "PT Slab",
+        "Other"
+      ]
+    },
+    "unit_count": {
+      "type": "number",
+      "description": "Total number of units"
+    },
+    "building_count": {
+      "type": "number"
+    },
+    "site_acres": {
+      "type": "number"
+    },
+    "gross_sf": {
+      "type": "number",
+      "description": "Gross square feet"
+    },
+    "net_rentable_sf": {
+      "type": "number",
+      "description": "Net rentable area in SF"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "completion_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "developer": {
+      "type": "string"
+    },
+    "general_contractor": {
+      "type": "string"
+    },
+    "architect": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Planning",
+        "Pre-Construction",
+        "Under Construction",
+        "Completed",
+        "On Hold"
+      ],
+      "default": "Planning"
+    },
+    "total_hard_cost": {
+      "type": "number",
+      "description": "Total hard cost in dollars"
+    },
+    "notes": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "project_name"
+  ]
+}

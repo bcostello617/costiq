@@ -1,0 +1,36 @@
+{
+  "name": "CostCategory",
+  "type": "object",
+  "properties": {
+    "category_name": {
+      "type": "string",
+      "description": "Name of the cost category"
+    },
+    "csi_division": {
+      "type": "string",
+      "description": "CSI MasterFormat division code"
+    },
+    "category_group": {
+      "type": "string",
+      "enum": [
+        "Site & Civil",
+        "Structure",
+        "Building Envelope",
+        "MEP Systems",
+        "Interior Finishes",
+        "Vertical Transportation",
+        "General & Administrative",
+        "Other"
+      ]
+    },
+    "description": {
+      "type": "string"
+    },
+    "sort_order": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "category_name"
+  ]
+}

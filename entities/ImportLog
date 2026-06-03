@@ -1,0 +1,54 @@
+{
+  "name": "ImportLog",
+  "type": "object",
+  "properties": {
+    "file_name": {
+      "type": "string"
+    },
+    "file_url": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "processing",
+        "completed",
+        "failed"
+      ],
+      "default": "pending"
+    },
+    "projects_imported": {
+      "type": "number",
+      "default": 0
+    },
+    "costs_imported": {
+      "type": "number",
+      "default": 0
+    },
+    "categories_imported": {
+      "type": "number",
+      "default": 0
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "row": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "import_summary": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "file_name"
+  ]
+}
