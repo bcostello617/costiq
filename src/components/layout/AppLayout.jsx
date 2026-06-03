@@ -85,7 +85,7 @@ export default function AppLayout() {
           {!collapsed &&
             <div className="ml-3">
               <span className="text-lg font-bold tracking-tight text-sidebar-foreground">Cost</span>
-              <span className="text-lg font-bold tracking-tight text-[hsl(var(--sidebar-background))]">IQ</span>
+              <span className="text-lg font-bold tracking-tight text-blue-400">IQ</span>
             </div>
           }
         </div>
