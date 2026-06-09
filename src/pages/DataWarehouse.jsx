@@ -306,20 +306,6 @@ export default function DataWarehouse() {
         </div>
       </div>
 
-      {/* Stats bar */}
-      <div className="grid grid-cols-3 gap-4">
-        {[
-          { label: 'Line Items', value: filtered.length.toLocaleString() },
-          { label: 'Total Cost', value: formatCurrency(totalCost) },
-          { label: 'Projects',   value: projectCnt.toString() },
-        ].map(stat => (
-          <div key={stat.label} className="rounded-xl border border-border bg-card px-4 py-3">
-            <p className="text-xs text-muted-foreground">{stat.label}</p>
-            <p className="text-lg font-bold tracking-tight mt-0.5">{stat.value}</p>
-          </div>
-        ))}
-      </div>
-
       {/* Table */}
       <div className="rounded-xl border border-border bg-card overflow-hidden">
         {isLoading ? (
