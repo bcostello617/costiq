@@ -22,6 +22,8 @@ import PDFImport from '@/pages/PDFImport';
 import DataWarehouse from '@/pages/DataWarehouse';
 import Estimator from '@/pages/Estimator';
 import SavedEstimates from '@/pages/SavedEstimates';
+import BidLeveling from '@/pages/BidLeveling';
+import BidLevelingDetail from '@/pages/BidLevelingDetail';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth } = useAuth();
@@ -55,6 +57,8 @@ const AuthenticatedApp = () => {
           <Route path="/estimator/new" element={<Estimator />} />
           <Route path="/estimator/:id" element={<Estimator />} />
           <Route path="/estimates" element={<SavedEstimates />} />
+          <Route path="/bid-leveling" element={<BidLeveling />} />
+          <Route path="/bid-leveling/:id" element={<BidLevelingDetail />} />
         </Route>
       </Route>
       <Route path="*" element={<PageNotFound />} />

@@ -18,6 +18,8 @@ import Compare from '@/pages/Compare';
 import Benchmarks from '@/pages/Benchmarks';
 import Copilot from '@/pages/Copilot';
 import Import from '@/pages/Import';
+import BidLeveling from '@/pages/BidLeveling';
+import BidLevelingDetail from '@/pages/BidLevelingDetail';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth } = useAuth();
@@ -46,6 +48,8 @@ const AuthenticatedApp = () => {
           <Route path="/benchmarks" element={<Benchmarks />} />
           <Route path="/copilot" element={<Copilot />} />
           <Route path="/import" element={<Import />} />
+          <Route path="/bid-leveling" element={<BidLeveling />} />
+          <Route path="/bid-leveling/:id" element={<BidLevelingDetail />} />
         </Route>
       </Route>
       <Route path="*" element={<PageNotFound />} />

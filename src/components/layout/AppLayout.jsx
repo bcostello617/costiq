@@ -4,7 +4,7 @@ import {
   LayoutDashboard, FolderOpen, BarChart3, GitCompareArrows,
   Brain, Upload, Settings, ChevronLeft, ChevronRight,
   Building2, Menu, X, Layers, FileText, Database, ChevronDown,
-  Calculator, ClipboardList } from 'lucide-react';
+  Calculator, ClipboardList, Scale } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
@@ -35,6 +35,7 @@ const navItems = [
   { path: '/copilot',        label: 'AI Copilot',  icon: Brain },
   { path: '/import',         label: 'Import',      icon: Upload },
   { path: '/pdf-import',     label: 'PDF Import',  icon: FileText },
+  { path: '/bid-leveling',   label: 'Bid Leveling', icon: Scale },
 ];
 
 export default function AppLayout() {
@@ -84,8 +85,8 @@ export default function AppLayout() {
           <Building2 className="h-7 w-7 text-sidebar-primary shrink-0" />
           {!collapsed &&
             <div className="ml-3">
-              <span className="text-lg font-bold tracking-tight text-sidebar-foreground">Cost</span>
-              <span className="text-lg font-bold tracking-tight text-blue-400">IQ</span>
+              <span className="text-lg font-bold tracking-tight text-sidebar-foreground">BCT </span>
+              <span className="text-lg font-bold tracking-tight text-blue-400">Development</span>
             </div>
           }
         </div>

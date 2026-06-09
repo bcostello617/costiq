@@ -79,4 +79,6 @@ export const db = {
   CostCategory: makeEntity('cost_categories'),
   ImportLog: makeEntity('import_logs'),
   Estimate: makeEntity('estimates'),
+  BidLeveling: makeEntity('bid_leveling'),
+  BidLineItem: makeEntity('bid_line_items'),
 };
